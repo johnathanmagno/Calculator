@@ -1,10 +1,8 @@
 const readline = require('readline');
-
 const reader = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
 });
-
 
 reader.question("Hey can I try to do some math for you?", function(input){
 	
@@ -42,7 +40,6 @@ reader.question("Hey can I try to do some math for you?", function(input){
 	if (num1 > num2 && mathSymbol === "/"){
 		console.log(cheater,num1/num2)}
 
-		
-		reader.close()
-	
-});
+	reader.close()
+	}
+)
