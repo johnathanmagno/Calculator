@@ -1,13 +1,15 @@
+
 const readline = require('readline');
 const reader = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
 });
 
+let outer = function(){
 reader.question("Hey can I try to do some math for you?", function(input){
-	
+
 	function rounding(x){
-		return Math.round(x / 5) * 5;}
+		return Math.round(x / 10) * 10;}
 
 	const tokens = input.split(' ');
 	const mathSymbol = tokens[0];
@@ -23,23 +25,44 @@ reader.question("Hey can I try to do some math for you?", function(input){
 	const smallerdivision = `Lol ${num1} is smaller than ${num2} that won't work`;
 
 	if (num1 + num2 > 500){
-			console.log(toohard)}
+			console.log(toohard)
+			return outer()
+	}
 
 	if (num1 + num2 < 500 && mathSymbol === "+"){
-		console.log(easy,num1+num2)}
+		console.log(easy,num1+num2)
+		return outer()
+	}
 	
 	if (num1 + num2 < 500 && mathSymbol === "-"){
-		console.log(ooh,num1-num2)}
+		console.log(ooh,num1-num2)
+		return outer()
+	}
 
 	if (num1 + num2 < 500 && mathSymbol === "*"){
-		console.log(uhoh)}
+		console.log(uhoh)
+		return outer()
+	}
 
 	if (num1 < num2 && mathSymbol === "/"){
-		console.log(smallerdivision)}
+		console.log(smallerdivision)
+		return outer()
+	}
 
 	if (num1 > num2 && mathSymbol === "/"){
-		console.log(cheater,num1/num2)}
-
-	reader.close()
+		console.log(cheater,num1/num2)
+		return outer()
+		
 	}
+
+	if (mathSymbol === "exit"){
+		reader.close();
+	}
+
+	
+	
+}
 )
+}
+
+outer();
