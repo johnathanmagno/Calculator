@@ -52,7 +52,7 @@ reader.question("", function(input){
 			return outer()
 	}
 
-	//All of this is math related
+//All of this is math related
 	if (num1 === 1 && num2 === 1 && mathSymbol === "+"){
 		console.log("C'mon that was the example...\nTry again with a harder one maybe?")
 		return outer()
@@ -86,7 +86,6 @@ reader.question("", function(input){
 		console.log(cheater,num1/num2)
 		setTimeout(() => {console.log(again); }, 1500)
 		return outer()
-		
 	}
 
 	if (mathSymbol === ">" && num1 > num2){
@@ -95,15 +94,13 @@ reader.question("", function(input){
 		return outer()
 	}
 
-	
-
 	if (mathSymbol === ">" && num1 <= num2){
 		console.log("Nope.")
 		setTimeout(() => {console.log(again); }, 1500)
 		return outer()
 	}
 
-	//Apparently I forgot to add Square Root to my calculator
+//Apparently I forgot to add Square Root to my calculator
 	if (mathSymbol === "^"){
 		console.log(Math.sqrt(num1))
 		setTimeout(() => {console.log(again); }, 1500)
@@ -122,7 +119,7 @@ reader.question("", function(input){
 		return outer()
 	}
 
-	//A way to close the application so it doesn't run forever
+//A way to close the application so it doesn't run forever
 	if (mathSymbol === "goodbye"){
 		console.log("Are you sure you want to leave? Say yes")
 		return outer()
@@ -139,14 +136,11 @@ reader.question("", function(input){
 		reader.close()
 	}
 
-	//Before it would break if you typed "5 + 4" instead of "+ 5 4", needed a way for it to reset if someone did an improper input
+//Before it would break if you typed "5 + 4" instead of "+ 5 4", needed a way for it to reset if someone did an improper input
 	else {
 		console.log("You're doing it wrong.. Type 'help' again please")
 		return outer()
 	}
-
-
-	
 }
 )
 };
