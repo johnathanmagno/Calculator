@@ -29,17 +29,19 @@ reader.question("", function(input){
 	const smallerdivision = `Lol ${num1} is smaller than ${num2} the answer is `;
 
 	//Help Section
-	const addhelp = "'+' will add two numbers together. Example: + 10 2 = 12\n"
+	const addhelp = " '+' will add two numbers together. Example: + 10 2 = 12\n"
 	const subhelp = "'-' will subtract two numbers. Example: - 10 2 = 8\n"
 	const mulhelp = "'*' will multiply numbers. Example: * 10 2 = 20\n"
 	const divhelp = "'/' will divide numbers. Example: / 10 2 = 5\n"
 	const bighelp = "'>' will check if a number is greater. Example: > 10 2 = Yes\n"
 	const smallhelp = "'<' will check if a number is smaller. Example: < 10 2 = No\n"
+	const sqhelp = "'^' will check the Square Root of a number. Example: ^ 10 = 3.16\n"
 	const byehelp = "'goodbye' will let you leave!"
+	
 
 //Added a help feature to show the types of operators the calculator could use
 	if (mathSymbol === "help"){
-		console.log(addhelp,subhelp,mulhelp,divhelp,bighelp,smallhelp,byehelp)
+		console.log(addhelp,subhelp,mulhelp,divhelp,bighelp,smallhelp,sqhelp,byehelp)
 		return outer()
 	}
 
@@ -93,8 +95,17 @@ reader.question("", function(input){
 		return outer()
 	}
 
+	
+
 	if (mathSymbol === ">" && num1 <= num2){
 		console.log("Nope.")
+		setTimeout(() => {console.log(again); }, 1500)
+		return outer()
+	}
+
+	//Apparently I forgot to add Square Root to my calculator
+	if (mathSymbol === "^"){
+		console.log(Math.sqrt(num1))
 		setTimeout(() => {console.log(again); }, 1500)
 		return outer()
 	}
