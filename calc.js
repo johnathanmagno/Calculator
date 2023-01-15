@@ -19,36 +19,42 @@ reader.question("", function(input){
 	const mathSymbol = tokens[0];
 	const num1 = Number(tokens[1]);
 	const num2 = Number(tokens[2]);
+	// const num3 = Number(tokens[3]);
+	// const num4 = Number(tokens[4]);
+	// const num5 = Number(tokens[5]);
+	// const num6 = Number(tokens[6]);
+// I'm assuming there's a better way to handle multiple number tokens? I tested and this works, but seems cumbersome
 	const rounded = rounding(num1*num2);
 	const again = "How about another question? When you're done, type 'goodbye'\nRemember: type 'help' for a list of stuff you can do!";
+	const timer = 800
 	const easy = "The answer is definitely probably ";
 	const ooh = "Um probably ";
-	const uhoh = `Dude I don't know probably like `;
+	const uhOh = `Dude I don't know probably like `;
 	const cheater = "I just googled it and it's ";
-	const toohard = "I have no idea...";
-	const smallerdivision = `Lol ${num1} is smaller than ${num2} the answer is `;
+	const tooHard = "I have no idea...";
+	const smallerDivision = `Lol ${num1} is smaller than ${num2} the answer is `;
 
 	//Help Section
-	const addhelp = " '+' will add two numbers together. Example: + 10 2 = 12\n"
-	const subhelp = "'-' will subtract two numbers. Example: - 10 2 = 8\n"
-	const mulhelp = "'*' will multiply numbers. Example: * 10 2 = 20\n"
-	const divhelp = "'/' will divide numbers. Example: / 10 2 = 5\n"
-	const bighelp = "'>' will check if a number is greater. Example: > 10 2 = Yes\n"
-	const smallhelp = "'<' will check if a number is smaller. Example: < 10 2 = No\n"
-	const sqhelp = "'^' will check the Square Root of a number. Example: ^ 10 = 3.16\n"
-	const byehelp = "'goodbye' will let you leave!"
+	const addHelp = " '+' will add two numbers together. Example: + 10 2 = 12\n"
+	const subHelp = "'-' will subtract two numbers. Example: - 10 2 = 8\n"
+	const mulHelp = "'*' will multiply numbers. Example: * 10 2 = 20\n"
+	const divHelp = "'/' will divide numbers. Example: / 10 2 = 5\n"
+	const bigHelp = "'>' will check if a number is greater. Example: > 10 2 = Yes\n"
+	const smallHelp = "'<' will check if a number is smaller. Example: < 10 2 = No\n"
+	const sqHelp = "'^' will check the Square Root of a number. Example: ^ 10 = 3.16\n"
+	const byeHelp = "'goodbye' will let you leave!"
 	
 
 //Added a help feature to show the types of operators the calculator could use
 	if (mathSymbol === "help"){
-		console.log(addhelp,subhelp,mulhelp,divhelp,bighelp,smallhelp,sqhelp,byehelp)
+		console.log(addHelp,subHelp,mulHelp,divHelp,bigHelp,smallHelp,sqHelp,byeHelp)
 		return outer()
 	}
 
 //In line with previous comment wanting to make the calculator dumb
 	if (num1 + num2 > 500){
-			console.log(toohard)
-			setTimeout(() => {console.log(again); }, 1500)
+			console.log(tooHard)
+			setTimeout(() => {console.log(again); }, timer)
 			return outer()
 	}
 
@@ -60,62 +66,68 @@ reader.question("", function(input){
 
 	if (num1 + num2 < 500 && num1 + num2 > 2 && mathSymbol === "+"){
 		console.log(easy,num1+num2)
-		setTimeout(() => {console.log(again); }, 1500)
+		setTimeout(() => {console.log(again); }, timer)
 		return outer()
 	}
 	
 	if (num1 + num2 < 500 && mathSymbol === "-"){
 		console.log(ooh,num1-num2)
-		setTimeout(() => {console.log(again); }, 1500)
+		setTimeout(() => {console.log(again); }, timer)
 		return outer()
 	}
 
-	if (num1 + num2 < 500 && mathSymbol === "*"){
-		console.log(uhoh,rounded)
-		setTimeout(() => {console.log(again); }, 1500)
+	if (num1 + num2 > 200 && mathSymbol === "*"){
+		console.log(uhOh,rounded)
+		setTimeout(() => {console.log(again); }, timer)
+		return outer()
+	}
+
+	if (num1 + num2 <= 200 && mathSymbol === "*"){
+		console.log("Pretty sure it's ",num1*num2)
+		setTimeout(() => {console.log(again); }, timer)
 		return outer()
 	}
 
 	if (num1 < num2 && mathSymbol === "/"){
-		console.log(smallerdivision,0)
-		setTimeout(() => {console.log(again); }, 1500)
+		console.log(smallerDivision,0)
+		setTimeout(() => {console.log(again); }, timer)
 		return outer()
 	}
 
 	if (num1 > num2 && mathSymbol === "/"){
 		console.log(cheater,num1/num2)
-		setTimeout(() => {console.log(again); }, 1500)
+		setTimeout(() => {console.log(again); }, timer)
 		return outer()
 	}
 
 	if (mathSymbol === ">" && num1 > num2){
 		console.log("Yup.")
-		setTimeout(() => {console.log(again); }, 1500)
+		setTimeout(() => {console.log(again); }, timer)
 		return outer()
 	}
 
 	if (mathSymbol === ">" && num1 <= num2){
 		console.log("Nope.")
-		setTimeout(() => {console.log(again); }, 1500)
+		setTimeout(() => {console.log(again); }, timer)
 		return outer()
 	}
 
 //Apparently I forgot to add Square Root to my calculator
 	if (mathSymbol === "^"){
 		console.log(Math.sqrt(num1))
-		setTimeout(() => {console.log(again); }, 1500)
+		setTimeout(() => {console.log(again); }, timer)
 		return outer()
 	}
 
 	if (mathSymbol === "<" && num1 < num2){
 		console.log("Yup.")
-		setTimeout(() => {console.log(again); }, 1500)
+		setTimeout(() => {console.log(again); }, timer)
 		return outer()
 	}
 
 	if (mathSymbol === "<" && num1 >= num2){
 		console.log("Nope.")
-		setTimeout(() => {console.log(again); }, 1500)
+		setTimeout(() => {console.log(again); }, timer)
 		return outer()
 	}
 
